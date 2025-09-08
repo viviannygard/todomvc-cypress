@@ -1,0 +1,80 @@
+name: Regressivo Crítico
+on: push
+jobs:
+  cypress-chrome-run:
+    runs-on: ubuntu-22.04
+    name: Regressivo Crítico on Chrome
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          headed: true
+          spec: cypress/e2e/aula_03/regressivoToDoApp.cy.js
+          
+      # after the test run completes store videos and any screenshots
+      - name: report-mochawesome-chrome
+        uses: actions/upload-artifact@v4
+        # add the line below to store screenshots only on failures
+        # if: failure()
+        with:
+          name: mochawesome-chrome
+          path: results/
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+      
+      - name: cypress-screenshots-chrome
+        uses: actions/upload-artifact@v4
+        # add the line below to store screenshots only on failures
+        # if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+          
+      - name: cypress-videos-chrome
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+
+  cypress-firefox-run:
+    runs-on: ubuntu-22.04
+    name: Regressivo Crítico on Firefox
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+        with:
+          browser: firefox
+          headed: true
+          spec: cypress/e2e/aula_03/regressivoToDoApp.cy.js
+
+    # after the test run completes store videos and any screenshots
+      - name: report-mochawesome-firefox
+        uses: actions/upload-artifact@v4
+        # add the line below to store screenshots only on failures
+        # if: failure()
+        with:
+          name: mochawesome-firefox
+          path: results/
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+      
+      - name: cypress-screenshots-firefox
+        uses: actions/upload-artifact@v4
+        # add the line below to store screenshots only on failures
+        # if: failure()
+        with:
+          name: cypress-screenshots-firefox
+          path: cypress/screenshots
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+          
+      - name: cypress-videos-firefox
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos-firefox
+          path: cypress/videos
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
