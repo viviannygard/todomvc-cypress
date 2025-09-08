@@ -1,0 +1,10 @@
+{
+  "name": "todomvc-cypress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Vivian Nygard",
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "^15.1.0"
+  }
+}
