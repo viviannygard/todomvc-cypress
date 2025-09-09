@@ -6,14 +6,5 @@
   "license": "MIT",
   "dependencies": {
     "cypress": "^15.1.0"
-  },
-  
-  "devDependencies": {
-    "mochawesome": "^7.1.3",
-    "mochawesome-merge": "^4.3.0",
-    "mochawesome-report-generator": "^6.2.0"
-  },
-  "scripts": {
-    "cy:run:e2e": "cypress run --spec cypress/e2e/aula_03/regressivo_toDoMVC.cy.js"
-  }
+  }  
 }
