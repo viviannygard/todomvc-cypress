@@ -7,6 +7,6 @@ import tela_inicial from "../support/pageObjects/tela_inicial.page"
 describe('Acessar a página do todoMVC', () => {
   it('Abrir o site', () => {
     cy.visit('https://todomvc.com/examples/javascript-es5/dist/')
-    tela_inicial.inputText()
+    tela_inicial.inputText('Acessar página principal')
   })
 })
